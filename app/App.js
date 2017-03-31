@@ -2,6 +2,12 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var _ = require('underscore');
 
+var Jumbotron = require('react-bootstrap').Jumbotron;
+var Panel = require('react-bootstrap').Panel;
+var ListGroup = require('react-bootstrap').ListGroup;
+var ListGroupItem = require('react-bootstrap').ListGroupItem;
+var Button = require('react-bootstrap').Button;
+
 var Exercise = require('./Exercise');
 var allExercises = require('./exercises');
 
@@ -53,26 +59,33 @@ var App = React.createClass({
 
   render: function () {
     var workout = this.state.exercises.map((exercise, index) =>
-      <Exercise
-        onSaveToggle={() => this.saveExercise(index)}
-        onCategoryChange={(category) => this.setCategory(index, category)}
-        allExercises={allExercises}
-        exercise={this.state.exercises[index]}
-        key={index}
-        saved={this.state.saved[index]}/>
+      <ListGroupItem key={index}>
+        <Exercise
+          onSaveToggle={() => this.saveExercise(index)}
+          onCategoryChange={(category) => this.setCategory(index, category)}
+          allExercises={allExercises}
+          exercise={this.state.exercises[index]}
+          category={this.state.categories[index]}
+          dropdownKey={index}
+          saved={this.state.saved[index]}/>
+      </ListGroupItem>
     );
     return (
-      <div>
-        <h1>
-          Your randomized workout:
-        </h1>
-        {workout}
+      <Panel>
+        <Jumbotron>
+          <h1>Your randomized workout:</h1>
+        </Jumbotron>
+          <ListGroup>
+            {workout}
+          </ListGroup>
 
-        <button onClick={this.rerollWorkout}>
+        <Button
+          bsStyle="primary" bsSize="large"
+          onClick={this.rerollWorkout}>
           Reroll Workout
-        </button>
+        </Button>
 
-      </div>
+      </Panel>
     );
   },
 });

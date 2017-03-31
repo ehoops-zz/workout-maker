@@ -1,10 +1,14 @@
 var React = require('react');
 var _ = require('underscore');
 
+var DropdownButton = require('react-bootstrap').DropdownButton;
+var MenuItem = require('react-bootstrap').MenuItem;
+var Button = require('react-bootstrap').Button;
+
 var Exercise = React.createClass({
 
-  handleCategoryChange: function (e) {
-    this.props.onCategoryChange(e.target.value);
+  handleCategoryChange: function (evtKey, evt) {
+    this.props.onCategoryChange(evtKey);
   },
 
   render: function () {
@@ -15,7 +19,10 @@ var Exercise = React.createClass({
     var allCategories = _.uniq(_.flatten(_.map(allExercises, function(exercise) {
       return exercise.categories})));
     var categoryDropdown = _.map(allCategories, function(category) {
-      return <option key={category} value={category}>{category}</option>
+      return <MenuItem
+        eventKey={category}
+        key={category}
+        value={category}> {category} </MenuItem>
     });
 
     return (
@@ -24,16 +31,18 @@ var Exercise = React.createClass({
         <div>Categories: {exercise.categories.join(', ')}</div>
 
         <div>
-          <select
-            onChange={this.handleCategoryChange}>
+          <DropdownButton
+            id={this.props.dropdownKey}
+            title={this.props.category}
+            onSelect={(evtKey, evt) => this.handleCategoryChange(evtKey, evt)}>
             {categoryDropdown}
-          </select>
+          </DropdownButton>
         </div>
 
-        <button
+        <Button
           style={{backgroundColor: background}}
-          onClick={this.props.onSaveToggle}>
-          Save Exercise </button>
+          onClick={this.props.onSaveToggle} >
+          Save Exercise </Button>
       </div>
     );
   },
