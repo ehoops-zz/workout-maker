@@ -3,14 +3,13 @@ var ReactDOM = require('react-dom');
 var _ = require('underscore');
 
 var Exercise = require('./Exercise');
-var Reroll = require('./Reroll');
-var exercises = require('./exercises');
+var allExercises = require('./exercises');
 
 
 var App = React.createClass({
 
   getInitialState: function () {
-    var initialExercises = _.sample(exercises, 3);
+    var initialExercises = _.sample(allExercises, 3);
     var initialCategories = _.map(initialExercises, (ex) => ex.categories[0]);
     return {
       saved: [0, 0, 0],
@@ -44,8 +43,8 @@ var App = React.createClass({
   },
 
   chooseExercise: function (currentExercise, category) {
-    var categoryExercises = _.filter(exercises, function (ex) {
-      return ex.categories.includes(category);
+    var categoryExercises = _.filter(allExercises, function (ex) {
+      return _.contains(ex.categories, category);
     });
     return _.sample(_.reject(categoryExercises, function (ex) {
       return ex === currentExercise;
@@ -55,8 +54,9 @@ var App = React.createClass({
   render: function () {
     var workout = this.state.exercises.map((exercise, index) =>
       <Exercise
-        onClick={() => this.saveExercise(index)}
-        onChange={(category) => this.setCategory(index, category)}
+        onSaveToggle={() => this.saveExercise(index)}
+        onCategoryChange={(category) => this.setCategory(index, category)}
+        allExercises={allExercises}
         exercise={this.state.exercises[index]}
         key={index}
         saved={this.state.saved[index]}/>
@@ -67,9 +67,11 @@ var App = React.createClass({
           Your randomized workout:
         </h1>
         {workout}
-        <Reroll
-          onClick={this.rerollWorkout}
-        />
+
+        <button onClick={this.rerollWorkout}>
+          Reroll Workout
+        </button>
+
       </div>
     );
   },
