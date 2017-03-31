@@ -7,6 +7,7 @@ var Panel = require('react-bootstrap').Panel;
 var ListGroup = require('react-bootstrap').ListGroup;
 var ListGroupItem = require('react-bootstrap').ListGroupItem;
 var Button = require('react-bootstrap').Button;
+var Grid = require('react-bootstrap').Grid;
 
 var Exercise = require('./Exercise');
 var allExercises = require('./exercises');
