@@ -1,3 +1,5 @@
+var uuid = require('uuid');
+
 var exercises = [
   {
     name: 'Stationary ball handling',
@@ -32,5 +34,9 @@ var exercises = [
     categories: ['Defense', 'Fitness'],
   },
 ];
+
+for (exercise of exercises) {
+  exercise.id = uuid();
+};
 
 module.exports = exercises;

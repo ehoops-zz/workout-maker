@@ -31,6 +31,35 @@ var App = React.createClass({
     this.setState({saved});
   },
 
+  saveWorkout: function() {
+    var workoutName = window.prompt('Enter workout name: ');
+    console.log(`Saving workout as ${workoutName}`);
+    var params = {method: 'POST',
+                  mode: 'cors',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    workoutName,
+                    exerciseList: this.state.exercises,
+                  })
+                }
+    fetch('http://localhost:3000/api/save_workout', params)
+      .then(
+        function(response) {
+          console.log('made request');
+          if (response.ok) {
+            console.log(response);
+          } else {
+            console.log(`Response status not OK.  Got: ${response.status}`);
+          };
+        }
+      )
+      .catch(function(error) {
+        console.log(`There was an error with your request: ${error}`);
+      });
+  },
+
   setCategory: function (id, newCategory) {
     var categories = this.state.categories.slice();
     categories[id] = newCategory;
@@ -84,6 +113,12 @@ var App = React.createClass({
           bsStyle="primary" bsSize="large"
           onClick={this.rerollWorkout}>
           Reroll Workout
+        </Button>
+
+        <Button
+          bsStyle="primary" bsSize="large"
+          onClick={this.saveWorkout}>
+          Save Workout
         </Button>
 
       </Panel>
