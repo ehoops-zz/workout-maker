@@ -9,20 +9,20 @@ const Grid = require('react-bootstrap').Grid;
 const Row = require('react-bootstrap').Row;
 const Col = require('react-bootstrap').Col;
 
-let Exercise = React.createClass({
+const Exercise = React.createClass({
 
   handleCategoryChange: function (evtKey, evt) {
     this.props.onCategoryChange(evtKey);
   },
 
   render: function () {
-    let exercise = this.props.exercise;
-    let background = this.props.saved ? 'lightblue' : 'gray';
+    const exercise = this.props.exercise;
+    const background = this.props.saved ? 'lightblue' : 'gray';
 
-    let allExercises = this.props.allExercises;
-    let allCategories = _.uniq(_.flatten(_.map(allExercises, function(exercise) {
+    const allExercises = this.props.allExercises;
+    const allCategories = _.uniq(_.flatten(_.map(allExercises, function(exercise) {
       return exercise.categories})));
-    let categoryDropdown = _.map(allCategories, function(category) {
+    const categoryDropdown = _.map(allCategories, function(category) {
       return <MenuItem
         eventKey={category}
         key={category}

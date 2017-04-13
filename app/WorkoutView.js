@@ -15,17 +15,17 @@ const {chooseExercise, rerollWorkout, saveWorkout} =
   require('./chooseAndSaveLogic');
 
 
-let WorkoutView = React.createClass({
+const WorkoutView = React.createClass({
 
   getInitialState: function () {
-    let exercises = this.props.initialExercises ||
+    const exercises = this.props.initialExercises ||
                            _.sample(allExercises, 3);
-    let categories = _.map(exercises, (ex) => ex.categories[0]);
-    let save = this.props.initialExercises ? 1 : 0;
-    let saved = _.times(exercises.length, function (){
+    const categories = _.map(exercises, (ex) => ex.categories[0]);
+    const save = this.props.initialExercises ? 1 : 0;
+    const saved = _.times(exercises.length, function (){
       return save;
     });
-    let workoutBanner = this.props.initialBanner || "Basketball Workout";
+    const workoutBanner = this.props.initialBanner || "Basketball Workout";
 
     return {
       saved,
@@ -46,7 +46,7 @@ let WorkoutView = React.createClass({
   },
 
   updateWorkoutOnClick: function () {
-    let exercises = rerollWorkout(this.state.exercises,
+    const exercises = rerollWorkout(this.state.exercises,
                     this.state.saved, this.state.categories);
     this.setState({exercises});
   },
@@ -64,7 +64,7 @@ let WorkoutView = React.createClass({
 
 
   render: function () {
-    let workout = this.state.exercises.map((exercise, index) =>
+    const workout = this.state.exercises.map((exercise, index) =>
       <ListGroupItem key={index}>
         <Exercise
           onSaveToggle={() => this.saveExercise(index)}

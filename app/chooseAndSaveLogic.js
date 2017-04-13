@@ -3,7 +3,7 @@ const allExercises = require('./exercises');
 
 
 function chooseExercise(currentExercise, category) {
-  let categoryExercises = _.filter(allExercises, function (ex) {
+  const categoryExercises = _.filter(allExercises, function (ex) {
     return _.contains(ex.categories, category);
   });
   return _.sample(_.reject(categoryExercises, function (ex) {
@@ -12,7 +12,7 @@ function chooseExercise(currentExercise, category) {
 }
 
 function rerollWorkout(exerciseArray, savedArray, categoryArray) {
-  let exercises = exerciseArray.map((exercise, index) => {
+  const exercises = exerciseArray.map((exercise, index) => {
       if (savedArray[index]) {
         return exercise;
       } else {
@@ -26,7 +26,7 @@ function rerollWorkout(exerciseArray, savedArray, categoryArray) {
 }
 
 function saveWorkout(exerciseArray) {
-  let workoutName = window.prompt('Enter workout name: ');
+  const workoutName = window.prompt('Enter workout name: ');
   console.log(`Saving workout as ${workoutName}`);
   const params = {method: 'POST',
                 mode: 'cors',

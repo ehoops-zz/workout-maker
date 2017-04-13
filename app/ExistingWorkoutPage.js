@@ -2,7 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const WorkoutView = require('./WorkoutView');
 
-let ExistingWorkoutPage = React.createClass({
+const ExistingWorkoutPage = React.createClass({
 
   getInitialState: function () {
     return {
@@ -44,7 +44,7 @@ let ExistingWorkoutPage = React.createClass({
       return <WorkoutView initialExercises={this.state.initialExercises}
                           initialBanner={this.state.initialBanner} />;
     }
-    return <div>test</div>;
+    return <div>Could not load existing workout.</div>;
   },
 })
 
