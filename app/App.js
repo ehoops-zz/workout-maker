@@ -1,12 +1,12 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Router = require('react-router-dom').BrowserRouter;
-var Route = require('react-router-dom').Route;
-var Link = require('react-router-dom').Link;
-var WorkoutView = require('./WorkoutView');
-var ChooseWorkout = require('./ChooseWorkout');
-var CreateWorkoutPage = require('./CreateWorkoutPage');
-var ExistingWorkoutPage = require('./ExistingWorkoutPage');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const Router = require('react-router-dom').BrowserRouter;
+const Route = require('react-router-dom').Route;
+const Link = require('react-router-dom').Link;
+const WorkoutView = require('./WorkoutView');
+const ChooseWorkout = require('./ChooseWorkout');
+const CreateWorkoutPage = require('./CreateWorkoutPage');
+const ExistingWorkoutPage = require('./ExistingWorkoutPage');
 
 const App = () => (
   <Router>

@@ -1,8 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var exercises = require('./exercises');
-var App = require('./App');
-var Exercise = require('./Exercise');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const App = require('./App');
 
 
 

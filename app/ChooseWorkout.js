@@ -1,11 +1,11 @@
-var React = require('react');
-var ListGroup = require('react-bootstrap').ListGroup;
-var ListGroupItem = require('react-bootstrap').ListGroupItem;
+const React = require('react');
+const ListGroup = require('react-bootstrap').ListGroup;
+const ListGroupItem = require('react-bootstrap').ListGroupItem;
 
-var Link = require('react-router-dom').Link;
+const Link = require('react-router-dom').Link;
 
 
-var ChooseWorkout = React.createClass({
+let ChooseWorkout = React.createClass({
 
   getInitialState: function () {
     return {
@@ -14,7 +14,7 @@ var ChooseWorkout = React.createClass({
   },
 
   componentDidMount: function() {
-    var params = {method: 'GET',
+    const params = {method: 'GET',
                   mode: 'cors',
                   headers: {
                     'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ var ChooseWorkout = React.createClass({
   },
 
   render: function () {
-    var workouts = <div>Loading workouts</div>;
+    let workouts = <div>Loading workouts</div>;
     if (this.state.workoutList !== null) {
       workouts = this.state.workoutList.map((workout, index) =>
         <ListGroupItem key={index}>

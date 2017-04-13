@@ -1,28 +1,28 @@
-var React = require('react');
-var _ = require('underscore');
+const React = require('react');
+const _ = require('underscore');
 
-var DropdownButton = require('react-bootstrap').DropdownButton;
-var MenuItem = require('react-bootstrap').MenuItem;
-var Button = require('react-bootstrap').Button;
-var Glyphicon = require('react-bootstrap').Glyphicon;
-var Grid = require('react-bootstrap').Grid;
-var Row = require('react-bootstrap').Row;
-var Col = require('react-bootstrap').Col;
+const DropdownButton = require('react-bootstrap').DropdownButton;
+const MenuItem = require('react-bootstrap').MenuItem;
+const Button = require('react-bootstrap').Button;
+const Glyphicon = require('react-bootstrap').Glyphicon;
+const Grid = require('react-bootstrap').Grid;
+const Row = require('react-bootstrap').Row;
+const Col = require('react-bootstrap').Col;
 
-var Exercise = React.createClass({
+let Exercise = React.createClass({
 
   handleCategoryChange: function (evtKey, evt) {
     this.props.onCategoryChange(evtKey);
   },
 
   render: function () {
-    var exercise = this.props.exercise;
-    var background = this.props.saved ? 'lightblue' : 'gray';
+    let exercise = this.props.exercise;
+    let background = this.props.saved ? 'lightblue' : 'gray';
 
-    var allExercises = this.props.allExercises;
-    var allCategories = _.uniq(_.flatten(_.map(allExercises, function(exercise) {
+    let allExercises = this.props.allExercises;
+    let allCategories = _.uniq(_.flatten(_.map(allExercises, function(exercise) {
       return exercise.categories})));
-    var categoryDropdown = _.map(allCategories, function(category) {
+    let categoryDropdown = _.map(allCategories, function(category) {
       return <MenuItem
         eventKey={category}
         key={category}

@@ -1,6 +1,6 @@
-var uuid = require('uuid');
+const uuid = require('uuid');
 
-var exercises = [
+let exercises = [
   {
     name: 'Stationary ball handling',
     categories: ['Ball handling'],

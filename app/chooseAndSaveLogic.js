@@ -1,9 +1,9 @@
-var _ = require('underscore');
-var allExercises = require('./exercises');
+const _ = require('underscore');
+const allExercises = require('./exercises');
 
 
 function chooseExercise(currentExercise, category) {
-  var categoryExercises = _.filter(allExercises, function (ex) {
+  let categoryExercises = _.filter(allExercises, function (ex) {
     return _.contains(ex.categories, category);
   });
   return _.sample(_.reject(categoryExercises, function (ex) {
@@ -12,7 +12,7 @@ function chooseExercise(currentExercise, category) {
 }
 
 function rerollWorkout(exerciseArray, savedArray, categoryArray) {
-  var exercises = exerciseArray.map((exercise, index) => {
+  let exercises = exerciseArray.map((exercise, index) => {
       if (savedArray[index]) {
         return exercise;
       } else {
@@ -26,9 +26,9 @@ function rerollWorkout(exerciseArray, savedArray, categoryArray) {
 }
 
 function saveWorkout(exerciseArray) {
-  var workoutName = window.prompt('Enter workout name: ');
+  let workoutName = window.prompt('Enter workout name: ');
   console.log(`Saving workout as ${workoutName}`);
-  var params = {method: 'POST',
+  const params = {method: 'POST',
                 mode: 'cors',
                 headers: {
                   'Content-Type': 'application/json'

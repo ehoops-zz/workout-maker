@@ -1,31 +1,31 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var _ = require('underscore');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const _ = require('underscore');
 
-var Jumbotron = require('react-bootstrap').Jumbotron;
-var Panel = require('react-bootstrap').Panel;
-var ListGroup = require('react-bootstrap').ListGroup;
-var ListGroupItem = require('react-bootstrap').ListGroupItem;
-var Button = require('react-bootstrap').Button;
-var Grid = require('react-bootstrap').Grid;
+const Jumbotron = require('react-bootstrap').Jumbotron;
+const Panel = require('react-bootstrap').Panel;
+const ListGroup = require('react-bootstrap').ListGroup;
+const ListGroupItem = require('react-bootstrap').ListGroupItem;
+const Button = require('react-bootstrap').Button;
+const Grid = require('react-bootstrap').Grid;
 
-var Exercise = require('./Exercise');
-var allExercises = require('./exercises');
+const Exercise = require('./Exercise');
+const allExercises = require('./exercises');
 const {chooseExercise, rerollWorkout, saveWorkout} =
   require('./chooseAndSaveLogic');
 
 
-var WorkoutView = React.createClass({
+let WorkoutView = React.createClass({
 
   getInitialState: function () {
-    var exercises = this.props.initialExercises ||
+    let exercises = this.props.initialExercises ||
                            _.sample(allExercises, 3);
-    var categories = _.map(exercises, (ex) => ex.categories[0]);
-    var save = this.props.initialExercises ? 1 : 0;
-    var saved = _.times(exercises.length, function (){
+    let categories = _.map(exercises, (ex) => ex.categories[0]);
+    let save = this.props.initialExercises ? 1 : 0;
+    let saved = _.times(exercises.length, function (){
       return save;
     });
-    var workoutBanner = this.props.initialBanner || "Basketball Workout";
+    let workoutBanner = this.props.initialBanner || "Basketball Workout";
 
     return {
       saved,
@@ -36,7 +36,7 @@ var WorkoutView = React.createClass({
   },
 
   saveExercise: function (id) {
-    var saved = this.state.saved.slice();
+    let saved = this.state.saved.slice();
     saved[id] = saved[id] ? 0 : 1;
     this.setState({saved});
   },
@@ -46,7 +46,7 @@ var WorkoutView = React.createClass({
   },
 
   updateWorkoutOnClick: function () {
-    var exercises = rerollWorkout(this.state.exercises,
+    let exercises = rerollWorkout(this.state.exercises,
                     this.state.saved, this.state.categories);
     this.setState({exercises});
   },
@@ -57,14 +57,14 @@ var WorkoutView = React.createClass({
   },
 
   setCategory: function (id, newCategory) {
-    var categories = this.state.categories.slice();
+    let categories = this.state.categories.slice();
     categories[id] = newCategory;
     this.setState({categories});
   },
 
 
   render: function () {
-    var workout = this.state.exercises.map((exercise, index) =>
+    let workout = this.state.exercises.map((exercise, index) =>
       <ListGroupItem key={index}>
         <Exercise
           onSaveToggle={() => this.saveExercise(index)}

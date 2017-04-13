@@ -1,8 +1,8 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var WorkoutView = require('./WorkoutView');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const WorkoutView = require('./WorkoutView');
 
-var ExistingWorkoutPage = React.createClass({
+let ExistingWorkoutPage = React.createClass({
 
   getInitialState: function () {
     return {
@@ -11,8 +11,8 @@ var ExistingWorkoutPage = React.createClass({
   },
 
   componentDidMount: function() {
-    var id = this.props.match.params.workoutID;
-    var params = {method: 'GET',
+    const id = this.props.match.params.workoutID;
+    const params = {method: 'GET',
                   mode: 'cors',
                   headers: {
                     'Content-Type': 'application/json'

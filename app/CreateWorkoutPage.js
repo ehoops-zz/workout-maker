@@ -1,7 +1,7 @@
-var React = require('react');
-var WorkoutView = require('./WorkoutView');
+const React = require('react');
+const WorkoutView = require('./WorkoutView');
 
-var CreateWorkoutPage = React.createClass({
+let CreateWorkoutPage = React.createClass({
   render: function () {
     return <WorkoutView />;
   },
