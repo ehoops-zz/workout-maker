@@ -28,7 +28,10 @@ var ExistingWorkoutPage = React.createClass({
           }
         }
       ).then((workout) => {
-        this.setState({initialExercises: workout.exerciseList});
+        this.setState({
+          initialExercises: workout.exerciseList,
+          initialBanner: workout.name
+        });
       })
       .catch(function(error) {
         console.log(`There was an error with your request: ${error}`);
@@ -38,7 +41,8 @@ var ExistingWorkoutPage = React.createClass({
   render: function () {
     console.log(this.state);
     if (this.state.initialExercises !== null) {
-      return <WorkoutView initialExercises={this.state.initialExercises} />;
+      return <WorkoutView initialExercises={this.state.initialExercises}
+                          initialBanner={this.state.initialBanner} />;
     }
     return <div>test</div>;
   },

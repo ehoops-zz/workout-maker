@@ -25,11 +25,13 @@ var WorkoutView = React.createClass({
     var saved = _.times(exercises.length, function (){
       return save;
     });
-    console.log(saved);
+    var workoutBanner = this.props.initialBanner || "Basketball Workout";
+
     return {
       saved,
       exercises,
       categories,
+      workoutBanner
     };
   },
 
@@ -77,7 +79,7 @@ var WorkoutView = React.createClass({
     return (
       <Panel>
         <Jumbotron>
-          <h1>Your randomized workout:</h1>
+          <h1 id="jumboBanner">{this.state.workoutBanner}</h1>
         </Jumbotron>
           <ListGroup>
             {workout}
