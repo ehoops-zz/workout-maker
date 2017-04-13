@@ -33,6 +33,10 @@ var exercises = [
     name: '3 x 30 seconds defensive slides',
     categories: ['Defense', 'Fitness'],
   },
+  {
+    name: 'Triangle close-outs',
+    categories: ['Defense'],
+  }
 ];
 
 for (exercise of exercises) {
