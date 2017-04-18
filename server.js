@@ -2,9 +2,12 @@ var express = require('express');
 var uuid = require('uuid');
 var exercises = require('./app/exercises');
 var bodyParser = require('body-parser');
+var path = require('path');
 
 
 var app = express();
+
+app.use(express.static(path.join(__dirname, 'build')));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
