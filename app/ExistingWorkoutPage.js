@@ -18,7 +18,7 @@ const ExistingWorkoutPage = React.createClass({
                     'Content-Type': 'application/json'
                   },
                 };
-    fetch(`http://localhost:3000/api/workout/${id}`, params)
+    fetch(`/api/workout/${id}`, params)
       .then(
         function(response) {
           if (response.ok) {

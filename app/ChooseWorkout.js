@@ -20,7 +20,7 @@ let ChooseWorkout = React.createClass({
                     'Content-Type': 'application/json'
                   },
                 }
-    fetch('http://localhost:3000/api/workouts', params)
+    fetch('/api/workouts', params)
       .then(
         function(response) {
           if (response.ok) {
