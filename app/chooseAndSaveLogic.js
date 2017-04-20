@@ -29,7 +29,6 @@ function saveWorkout(exerciseArray) {
   const workoutName = window.prompt('Enter workout name: ');
   console.log(`Saving workout as ${workoutName}`);
   const params = {method: 'POST',
-                mode: 'no-cors',
                 headers: {
                   'Content-Type': 'application/json'
                 },
@@ -38,7 +37,7 @@ function saveWorkout(exerciseArray) {
                   exerciseList: exerciseArray,
                 })
               }
-  fetch('http://localhost:3000/api/save_workout', params)
+  fetch('/api/save_workout', params)
     .then(
       function(response) {
         console.log('made request');
