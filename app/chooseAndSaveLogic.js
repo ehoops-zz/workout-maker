@@ -29,7 +29,7 @@ function saveWorkout(exerciseArray) {
   const workoutName = window.prompt('Enter workout name: ');
   console.log(`Saving workout as ${workoutName}`);
   const params = {method: 'POST',
-                mode: 'cors',
+                mode: 'no-cors',
                 headers: {
                   'Content-Type': 'application/json'
                 },
