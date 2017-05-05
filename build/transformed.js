@@ -30933,7 +30933,6 @@ const App = () => React.createElement(
         'Workouts'
       )
     ),
-    React.createElement('hr', null),
     React.createElement(Route, { exact: true, path: '/', component: CreateWorkoutPage }),
     React.createElement(Route, { path: '/workouts', component: ChooseWorkout }),
     React.createElement(Route, { path: '/workout/:workoutID', component: ExistingWorkoutPage })

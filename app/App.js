@@ -16,8 +16,6 @@ const App = () => (
         <Link to="/workouts" className="btn btn-default">Workouts</Link>
       </div>
 
-      <hr/>
-
       <Route exact path="/" component={CreateWorkoutPage} />
       <Route path="/workouts" component={ChooseWorkout} />
       <Route path="/workout/:workoutID" component={ExistingWorkoutPage} />
