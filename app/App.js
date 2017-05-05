@@ -11,10 +11,10 @@ const ExistingWorkoutPage = require('./ExistingWorkoutPage');
 const App = () => (
   <Router>
     <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/workouts">Workouts</Link></li>
-      </ul>
+      <div className="col-md-4 text-center">
+        <Link to="/" className="btn btn-default">Home</Link>
+        <Link to="/workouts" className="btn btn-default">Workouts</Link>
+      </div>
 
       <hr/>
 
