@@ -1,3 +1,4 @@
+// @flow
 const React = require('react');
 const ListGroup = require('react-bootstrap').ListGroup;
 const ListGroupItem = require('react-bootstrap').ListGroupItem;
@@ -37,7 +38,7 @@ let ChooseWorkout = React.createClass({
       })
   },
 
-  render: function () {
+  render: function (): React$Element<*> {
     let workouts = <div>Loading workouts</div>;
     if (this.state.workoutList !== null) {
       workouts = this.state.workoutList.map((workout, index) =>

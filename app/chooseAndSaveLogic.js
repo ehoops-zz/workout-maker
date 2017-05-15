@@ -1,17 +1,23 @@
-const _ = require('underscore');
-const allExercises = require('./exercises');
+// @flow
+import _ from 'underscore';
+import {allExercises} from './exercises';
+import type {exerciseObj} from './exercises';
 
 
-function chooseExercise(currentExercise, category) {
-  const categoryExercises = _.filter(allExercises, function (ex) {
+export function chooseExercise(currentExercise: exerciseObj,
+                               category: string): exerciseObj {
+  const categoryExercises: Array<exerciseObj> =
+                            _.filter(allExercises, function (ex) {
     return _.contains(ex.categories, category);
   });
-  return _.sample(_.reject(categoryExercises, function (ex) {
+  return _.sample(_.reject(categoryExercises, function (ex: exerciseObj) {
     return ex === currentExercise;
   }));
 }
 
-function rerollWorkout(exerciseArray, savedArray, categoryArray) {
+export function rerollWorkout(exerciseArray: Array<exerciseObj>,
+                       savedArray: Array<boolean>,
+                       categoryArray: Array<string>): Array<exerciseObj> {
   const exercises = exerciseArray.map((exercise, index) => {
       if (savedArray[index]) {
         return exercise;
@@ -25,7 +31,7 @@ function rerollWorkout(exerciseArray, savedArray, categoryArray) {
   return exercises;
 }
 
-function saveWorkout(exerciseArray) {
+export function saveWorkout(exerciseArray: Array<exerciseObj>) {
   const workoutName = window.prompt('Enter workout name: ');
   console.log(`Saving workout as ${workoutName}`);
   const params = {method: 'POST',
@@ -52,9 +58,3 @@ function saveWorkout(exerciseArray) {
       console.log(`There was an error with your request: ${error}`);
     });
 }
-
-module.exports = {
-  chooseExercise,
-  rerollWorkout,
-  saveWorkout
-};
