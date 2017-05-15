@@ -1,6 +1,6 @@
 const {chooseExercise, rerollWorkout} = require('./chooseAndSaveLogic');
 const _ = require('underscore');
-const allExercises = require('./exercises');
+import {allExercises} from './exercises';
 
 const allCategories = _.uniq(_.flatten(_.map(allExercises, function(exercise) {
   return exercise.categories})));

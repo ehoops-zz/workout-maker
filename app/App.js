@@ -1,3 +1,5 @@
+// @flow
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 const Router = require('react-router-dom').BrowserRouter;
@@ -8,7 +10,7 @@ const ChooseWorkout = require('./ChooseWorkout');
 const CreateWorkoutPage = require('./CreateWorkoutPage');
 const ExistingWorkoutPage = require('./ExistingWorkoutPage');
 
-const App = () => (
+const App = (): React$Element<*> => (
   <Router>
     <div>
       <div className="col-md-4 text-center">

@@ -1,3 +1,4 @@
+// @flow
 const React = require('react');
 const ReactDOM = require('react-dom');
 const WorkoutView = require('./WorkoutView');
@@ -38,7 +39,7 @@ const ExistingWorkoutPage = React.createClass({
       })
   },
 
-  render: function () {
+  render: function (): React$Element<*> {
     console.log(this.state);
     if (this.state.initialExercises !== null) {
       return <WorkoutView initialExercises={this.state.initialExercises}

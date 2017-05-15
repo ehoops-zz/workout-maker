@@ -50,5 +50,6 @@ module.exports = {
     filename: 'transformed.js',
     path: __dirname + '/build'
   },
+  devtool: 'source-map',
   plugins: [HTMLWebpackPluginConfig]
 };

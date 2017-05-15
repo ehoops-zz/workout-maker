@@ -1,3 +1,4 @@
+// @flow
 const React = require('react');
 const _ = require('underscore');
 
@@ -15,7 +16,7 @@ const Exercise = React.createClass({
     this.props.onCategoryChange(evtKey);
   },
 
-  render: function () {
+  render: function (): React$Element<*> {
     const exercise = this.props.exercise;
     const background = this.props.saved ? 'lightblue' : 'gray';
 

@@ -1,8 +1,9 @@
+// @flow
 const React = require('react');
-const WorkoutView = require('./WorkoutView');
+import WorkoutView from'./WorkoutView';
 
 const CreateWorkoutPage = React.createClass({
-  render: function () {
+  render: function (): React$Element<*> {
     return <WorkoutView />;
   },
 })
