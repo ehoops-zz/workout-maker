@@ -4,8 +4,13 @@ import {allExercises} from './exercises';
 import type {exerciseObj} from './exercises';
 
 
-export function chooseExercise(currentExercise: exerciseObj,
-                               category: string): exerciseObj {
+export function chooseExercise(currentExercise?: exerciseObj,
+                               category?: string): exerciseObj {
+  if (category === undefined) {
+    let temp = _.sample(allExercises);
+    console.log(temp);
+    return temp;
+  }
   const categoryExercises: Array<exerciseObj> =
                             _.filter(allExercises, function (ex) {
     return _.contains(ex.categories, category);
@@ -15,16 +20,28 @@ export function chooseExercise(currentExercise: exerciseObj,
   }));
 }
 
-export function rerollWorkout(exerciseArray: Array<exerciseObj>,
-                       savedArray: Array<boolean>,
-                       categoryArray: Array<string>): Array<exerciseObj> {
-  const exercises = exerciseArray.map((exercise, index) => {
-      if (savedArray[index]) {
+export type workoutObj = {
+  exercises: Array<exerciseObj>,
+  categories: Array<string>,
+  saved: Array<boolean>,
+}
+
+export function addExercise(workout: workoutObj): workoutObj {
+  const newExercise = chooseExercise();
+  workout.exercises.push(newExercise);
+  workout.categories.push(newExercise.categories[0]);
+  workout.saved.push(false);
+  return workout;
+}
+
+export function rerollWorkout(workout: workoutObj): Array<exerciseObj> {
+  const exercises = workout.exercises.map((exercise, index) => {
+      if (workout.saved[index]) {
         return exercise;
       } else {
         // chooseExercise will return undefined if there is only one exercise
         // in the given category.  In this case, use the current exercise.
-        return (chooseExercise(exercise, categoryArray[index]) || exercise);
+        return (chooseExercise(exercise, workout.categories[index]) || exercise);
       }
     }
   );

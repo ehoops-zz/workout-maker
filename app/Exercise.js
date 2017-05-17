@@ -45,6 +45,7 @@ const Exercise = React.createClass({
           <Col xs={6} md={4}>
             <div>Exercise: {exercise.name}</div>
             <div>Categories: {exercise.categories.join(', ')}</div>
+            <div>Time: {exercise.time}</div>
           </Col>
 
           <Col xs={4} md={4}>

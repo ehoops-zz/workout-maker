@@ -13,13 +13,12 @@ const Grid = require('react-bootstrap').Grid;
 import Exercise from './Exercise';
 import {allExercises} from './exercises';
 import type {exerciseObj} from './exercises';
-import {chooseExercise, rerollWorkout, saveWorkout} from './chooseAndSaveLogic';
+import {chooseExercise, addExercise, rerollWorkout, saveWorkout} from './chooseAndSaveLogic';
+import type {workoutObj} from './chooseAndSaveLogic';
 
 
 const WorkoutView = React.createClass({
-  getInitialState: function (): {saved: Array<boolean>,
-                                 exercises: Array<exerciseObj>,
-                                 categories: Array<string>,
+  getInitialState: function (): {workout: workoutObj,
                                  workoutBanner: string }{
     const exercises = this.props.initialExercises ||
                            _.sample(allExercises, 3);
@@ -30,28 +29,41 @@ const WorkoutView = React.createClass({
     });
     const workoutBanner = this.props.initialBanner || "Basketball Workout";
 
+    const workout = {
+      exercises: exercises,
+      categories: categories,
+      saved: saved,
+    }
+
     return {
-      saved,
-      exercises,
-      categories,
+      workout,
       workoutBanner
     };
   },
 
   saveExercise: function (id) {
-    let saved: Array<boolean> = this.state.saved.slice();
+    let workout = this.state.workout;
+    let saved = workout.saved.slice();
     saved[id] = saved[id] ? false : true;
-    this.setState({saved});
+    workout.saved = saved;
+    this.setState({workout});
   },
 
   saveWorkoutOnClick: function() {
-    saveWorkout(this.state.exercises);
+    saveWorkout(this.state.workout.exercises);
   },
 
   updateWorkoutOnClick: function () {
-    const exercises: Array<exerciseObj> = rerollWorkout(this.state.exercises,
-                    this.state.saved, this.state.categories);
-    this.setState({exercises});
+    let workout = this.state.workout;
+    const exercises: Array<exerciseObj> = rerollWorkout(this.state.workout);
+    workout.exercises = exercises;
+    this.setState({workout});
+  },
+
+  addExerciseOnClick: function () {
+    console.log('add exercise clicked');
+    const workout = addExercise(this.state.workout);
+    this.setState({workout});
   },
 
   loadWorkout: function(e) {
@@ -60,32 +72,39 @@ const WorkoutView = React.createClass({
   },
 
   setCategory: function (id, newCategory) {
-    let categories: Array<string> = this.state.categories.slice();
+    let workout = this.state.workout;
+    let categories: Array<string> = workout.categories.slice();
     categories[id] = newCategory;
-    this.setState({categories});
+    workout.categories = categories;
+    this.setState({workout});
   },
 
 
   render: function (): React$Element<*> {
-    const workout = this.state.exercises.map((exercise, index) =>
+    const workout = this.state.workout;
+    const workoutTime = workout.exercises.reduce((acc, val) => {
+      return acc + val.time;
+    }, 0);
+    const workoutList = workout.exercises.map((exercise, index) =>
       <ListGroupItem key={index}>
         <Exercise
           onSaveToggle={() => this.saveExercise(index)}
           onCategoryChange={(category) => this.setCategory(index, category)}
           allExercises={allExercises}
-          exercise={this.state.exercises[index]}
-          category={this.state.categories[index]}
+          exercise={workout.exercises[index]}
+          category={workout.categories[index]}
           dropdownKey={index}
-          saved={this.state.saved[index]}/>
+          saved={workout.saved[index]}/>
       </ListGroupItem>
     );
     return (
       <Panel>
         <Jumbotron>
           <h1 id="jumboBanner">{this.state.workoutBanner}</h1>
+          <p>{`Workout Time: ${workoutTime}`}</p>
         </Jumbotron>
           <ListGroup>
-            {workout}
+            {workoutList}
           </ListGroup>
 
         <Button
@@ -98,6 +117,12 @@ const WorkoutView = React.createClass({
           bsStyle="primary" bsSize="large"
           onClick={this.saveWorkoutOnClick}>
           Save Workout
+        </Button>
+
+        <Button
+          bsStyle="primary" bsSize="large"
+          onClick={this.addExerciseOnClick}>
+          Add Exercise
         </Button>
 
       </Panel>
