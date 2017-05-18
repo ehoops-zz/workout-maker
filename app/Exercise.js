@@ -18,6 +18,7 @@ const Exercise = React.createClass({
 
   render: function (): React$Element<*> {
     const exercise = this.props.exercise;
+    const index = this.props.workoutIndex;
     const background = this.props.saved ? 'lightblue' : 'gray';
 
     const allExercises = this.props.allExercises;
@@ -48,12 +49,16 @@ const Exercise = React.createClass({
             <div>Time: {exercise.time}</div>
           </Col>
 
-          <Col xs={4} md={4}>
+          <Col xs={2} md={2}>
             <Button
               style={{backgroundColor: background}}
               onClick={this.props.onSaveToggle} >
               <Glyphicon glyph="ok" />
             </Button>
+          </Col>
+
+          <Col xs={2} md={2}>
+            <Button id={"delete-" + index}>X</Button>
           </Col>
         </Row>
       </Grid>

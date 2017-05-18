@@ -92,6 +92,7 @@ const WorkoutView = React.createClass({
           onCategoryChange={(category) => this.setCategory(index, category)}
           allExercises={allExercises}
           exercise={exPanel.exercise}
+          workoutIndex={index}
           category={exPanel.category}
           dropdownKey={index}
           saved={exPanel.saved}/>
