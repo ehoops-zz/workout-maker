@@ -58,7 +58,8 @@ const Exercise = React.createClass({
           </Col>
 
           <Col xs={2} md={2}>
-            <Button id={"delete-" + index}>X</Button>
+            <Button id={"delete-" + index}
+            onClick={this.props.onDeleteExercise}>X</Button>
           </Col>
         </Row>
       </Grid>

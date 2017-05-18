@@ -37,6 +37,11 @@ export function addExercise(workout: Array<exercisePanelObj>): Array<exercisePan
   return workout;
 }
 
+export function deleteExercise(workout: Array<exercisePanelObj>, index: number) {
+  workout.splice(index, 1);
+  return workout;
+}
+
 export function rerollWorkout(workout: Array<exercisePanelObj>): Array<exercisePanelObj> {
   const newWorkout = _.map(workout, (exPanel) => {
     if (exPanel.saved) {

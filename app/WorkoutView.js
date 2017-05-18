@@ -13,7 +13,8 @@ const Grid = require('react-bootstrap').Grid;
 import Exercise from './Exercise';
 import {allExercises} from './exercises';
 import type {exerciseObj} from './exercises';
-import {chooseExercise, addExercise, rerollWorkout, saveWorkout} from './chooseAndSaveLogic';
+import {chooseExercise, addExercise, deleteExercise,
+  rerollWorkout, saveWorkout} from './chooseAndSaveLogic';
 import type {exercisePanelObj} from './chooseAndSaveLogic';
 
 
@@ -68,6 +69,18 @@ const WorkoutView = React.createClass({
     this.setState({workout});
   },
 
+  deleteExerciseOnClick: function (e) {
+    const id = e.target.id
+    const index = id.indexOf('-');
+    if (index === -1 || index >= id.length - 1) {
+      console.log('invalid delete button id');
+      return;
+    }
+    const idNumber = parseInt(id.slice(index+1));
+    const workout = deleteExercise(this.state.workout, idNumber);
+    this.setState({workout});
+  },
+
   loadWorkout: function(e) {
     e.preventDefault();
     this.props.browserHistory.push('/workouts');
@@ -95,7 +108,8 @@ const WorkoutView = React.createClass({
           workoutIndex={index}
           category={exPanel.category}
           dropdownKey={index}
-          saved={exPanel.saved}/>
+          saved={exPanel.saved}
+          onDeleteExercise={this.deleteExerciseOnClick}/>
       </ListGroupItem>
     );
     return (
