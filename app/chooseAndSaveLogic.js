@@ -20,32 +20,36 @@ export function chooseExercise(currentExercise?: exerciseObj,
   }));
 }
 
-export type workoutObj = {
-  exercises: Array<exerciseObj>,
-  categories: Array<string>,
-  saved: Array<boolean>,
+export type exercisePanelObj = {
+  exercise: exerciseObj,
+  category: string,
+  saved: boolean,
 }
 
-export function addExercise(workout: workoutObj): workoutObj {
+export function addExercise(workout: Array<exercisePanelObj>): Array<exercisePanelObj> {
   const newExercise = chooseExercise();
-  workout.exercises.push(newExercise);
-  workout.categories.push(newExercise.categories[0]);
-  workout.saved.push(false);
+  const newExercisePanel = {
+    exercise: newExercise,
+    category: newExercise.categories[0],
+    saved: false,
+  }
+  workout.push(newExercisePanel);
   return workout;
 }
 
-export function rerollWorkout(workout: workoutObj): Array<exerciseObj> {
-  const exercises = workout.exercises.map((exercise, index) => {
-      if (workout.saved[index]) {
-        return exercise;
-      } else {
-        // chooseExercise will return undefined if there is only one exercise
-        // in the given category.  In this case, use the current exercise.
-        return (chooseExercise(exercise, workout.categories[index]) || exercise);
-      }
+export function rerollWorkout(workout: Array<exercisePanelObj>): Array<exercisePanelObj> {
+  const newWorkout = _.map(workout, (exPanel) => {
+    if (exPanel.saved) {
+      return exPanel;
+    } else {
+      // chooseExercise will return undefined if there is only one exercise
+      // in the given category.  In this case, use the current exercise.
+      let newEx = chooseExercise(exPanel.exercise, exPanel.category) || exPanel.exercise;
+      exPanel.exercise = newEx;
+      return exPanel;
     }
-  );
-  return exercises;
+  })
+  return newWorkout;
 }
 
 export function saveWorkout(exerciseArray: Array<exerciseObj>) {

@@ -14,11 +14,11 @@ import Exercise from './Exercise';
 import {allExercises} from './exercises';
 import type {exerciseObj} from './exercises';
 import {chooseExercise, addExercise, rerollWorkout, saveWorkout} from './chooseAndSaveLogic';
-import type {workoutObj} from './chooseAndSaveLogic';
+import type {exercisePanelObj} from './chooseAndSaveLogic';
 
 
 const WorkoutView = React.createClass({
-  getInitialState: function (): {workout: workoutObj,
+  getInitialState: function (): {workout: Array<exercisePanelObj>,
                                  workoutBanner: string }{
     const exercises = this.props.initialExercises ||
                            _.sample(allExercises, 3);
@@ -27,13 +27,16 @@ const WorkoutView = React.createClass({
     const saved = _.times(exercises.length, function (){
       return save;
     });
-    const workoutBanner = this.props.initialBanner || "Basketball Workout";
 
-    const workout = {
-      exercises: exercises,
-      categories: categories,
-      saved: saved,
-    }
+    const workout = _.map(exercises, (ex, ind) => {
+      return {
+        exercise: ex,
+        category: categories[ind],
+        saved: saved[ind],
+      }
+    })
+
+    const workoutBanner = this.props.initialBanner || "Basketball Workout";
 
     return {
       workout,
@@ -43,25 +46,24 @@ const WorkoutView = React.createClass({
 
   saveExercise: function (id) {
     let workout = this.state.workout;
-    let saved = workout.saved.slice();
-    saved[id] = saved[id] ? false : true;
-    workout.saved = saved;
+    workout[id].saved = workout[id].saved ? false : true;
     this.setState({workout});
   },
 
   saveWorkoutOnClick: function() {
-    saveWorkout(this.state.workout.exercises);
+    const exercises = _.map(this.state.workout, (exPanel) => {
+      return exPanel.exercise;
+    })
+    saveWorkout(exercises);
   },
 
   updateWorkoutOnClick: function () {
-    let workout = this.state.workout;
-    const exercises: Array<exerciseObj> = rerollWorkout(this.state.workout);
-    workout.exercises = exercises;
+    let prevWorkout = this.state.workout;
+    const workout = rerollWorkout(prevWorkout);
     this.setState({workout});
   },
 
   addExerciseOnClick: function () {
-    console.log('add exercise clicked');
     const workout = addExercise(this.state.workout);
     this.setState({workout});
   },
@@ -73,28 +75,26 @@ const WorkoutView = React.createClass({
 
   setCategory: function (id, newCategory) {
     let workout = this.state.workout;
-    let categories: Array<string> = workout.categories.slice();
-    categories[id] = newCategory;
-    workout.categories = categories;
+    workout[id].category = newCategory;
     this.setState({workout});
   },
 
 
   render: function (): React$Element<*> {
     const workout = this.state.workout;
-    const workoutTime = workout.exercises.reduce((acc, val) => {
-      return acc + val.time;
+    const workoutTime = _.reduce(workout, (acc, exPanel) => {
+      return acc + exPanel.exercise.time;
     }, 0);
-    const workoutList = workout.exercises.map((exercise, index) =>
+    const workoutList = _.map(workout, (exPanel, index) =>
       <ListGroupItem key={index}>
         <Exercise
           onSaveToggle={() => this.saveExercise(index)}
           onCategoryChange={(category) => this.setCategory(index, category)}
           allExercises={allExercises}
-          exercise={workout.exercises[index]}
-          category={workout.categories[index]}
+          exercise={exPanel.exercise}
+          category={exPanel.category}
           dropdownKey={index}
-          saved={workout.saved[index]}/>
+          saved={exPanel.saved}/>
       </ListGroupItem>
     );
     return (
