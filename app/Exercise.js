@@ -16,6 +16,11 @@ const Exercise = React.createClass({
     this.props.onCategoryChange(evtKey);
   },
 
+  handleMouseEnter: function(evtKey, evt) {
+    console.log('Entered');
+    console.log(this.props.exercise.description);
+  },
+
   render: function (): React$Element<*> {
     const exercise = this.props.exercise;
     const index = this.props.workoutIndex;
@@ -43,7 +48,9 @@ const Exercise = React.createClass({
             </DropdownButton>
           </Col>
 
-          <Col xs={6} md={4}>
+          <Col xs={6} md={4}
+            onMouseEnter={this.handleMouseEnter}
+            key={index}>
             <div>Exercise: {exercise.name}</div>
             <div>Categories: {exercise.categories.join(', ')}</div>
             <div>Time: {exercise.time}</div>
