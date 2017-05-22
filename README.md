@@ -19,6 +19,7 @@ git clone https://github.com/YOUR-USERNAME/workout-maker
 ```
 
 Navigate to the local repository directory and run the following commands:
+
 Install dependencies with yarn
 
 ```
