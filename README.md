@@ -61,14 +61,11 @@ yarn test
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
+Please read [CONTRIBUTING.md](https://gist.github.com/ehoops/feab877d160479993483e3957da81748) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
 * **Erin Hoops** - *Initial work* - [EHoops](https://github.com/ehoops/)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## Acknowledgments
 * Readme and Code of conduct are adapted from [PurpleBooth](https://gist.github.com/PurpleBooth) templates.
