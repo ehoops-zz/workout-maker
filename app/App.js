@@ -1,17 +1,15 @@
 // @flow
-
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Router = require('react-router-dom').BrowserRouter;
-const Route = require('react-router-dom').Route;
-const Link = require('react-router-dom').Link;
-const WorkoutView = require('./WorkoutView');
-const ChooseWorkout = require('./ChooseWorkout');
-const CreateWorkoutPage = require('./CreateWorkoutPage');
-const ExistingWorkoutPage = require('./ExistingWorkoutPage');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
+import WorkoutView from './WorkoutView';
+import {ChooseWorkout} from './ChooseWorkout';
+import CreateWorkoutPage from './CreateWorkoutPage';
+import ExistingWorkoutPage from './ExistingWorkoutPage';
+//const ChooseWorkout = require('./ChooseWorkout');
 
 const App = (): React$Element<*> => (
-  <Router>
+  <BrowserRouter>
     <div>
       <div className="col-md-4 text-center">
         <Link to="/" className="btn btn-default">Home</Link>
@@ -23,7 +21,7 @@ const App = (): React$Element<*> => (
       <Route path="/workout/:workoutID" component={ExistingWorkoutPage} />
 
     </div>
-  </Router>
+  </BrowserRouter>
 )
 
 module.exports = App;

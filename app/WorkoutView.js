@@ -3,23 +3,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import _ from 'underscore';
 
-const Jumbotron = require('react-bootstrap').Jumbotron;
-const Panel = require('react-bootstrap').Panel;
-const ListGroup = require('react-bootstrap').ListGroup;
-const ListGroupItem = require('react-bootstrap').ListGroupItem;
-const Button = require('react-bootstrap').Button;
-const Grid = require('react-bootstrap').Grid;
+import {Jumbotron, Panel, ListGroup, ListGroupItem, Button, Grid} from 'react-bootstrap';
 
 import Exercise from './Exercise';
 import {allExercises} from './exercises';
 import type {exerciseObj} from './exercises';
 import {chooseExercise, addExercise, deleteExercise,
   rerollWorkout, saveWorkout} from './chooseAndSaveLogic';
-import type {exercisePanelObj} from './chooseAndSaveLogic';
+import type {ExercisePanelObj} from './chooseAndSaveLogic';
 
 
 const WorkoutView = React.createClass({
-  getInitialState: function (): {workout: Array<exercisePanelObj>,
+  getInitialState: function (): {workout: Array<ExercisePanelObj>,
                                  workoutBanner: string }{
     const exercises = this.props.initialExercises ||
                            _.sample(allExercises, 3);
@@ -47,7 +42,7 @@ const WorkoutView = React.createClass({
 
   saveExercise: function (id) {
     let workout = this.state.workout;
-    workout[id].saved = workout[id].saved ? false : true;
+    workout[id].saved = !workout[id].saved;
     this.setState({workout});
   },
 
@@ -69,15 +64,8 @@ const WorkoutView = React.createClass({
     this.setState({workout});
   },
 
-  deleteExerciseOnClick: function (e) {
-    const id = e.target.id
-    const index = id.indexOf('-');
-    if (index === -1 || index >= id.length - 1) {
-      console.log('invalid delete button id');
-      return;
-    }
-    const idNumber = parseInt(id.slice(index+1));
-    const workout = deleteExercise(this.state.workout, idNumber);
+  deleteExerciseOnClick: function (index) {
+    const workout = deleteExercise(this.state.workout, index);
     this.setState({workout});
   },
 

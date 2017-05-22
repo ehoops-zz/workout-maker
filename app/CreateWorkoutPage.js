@@ -1,5 +1,5 @@
 // @flow
-const React = require('react');
+import React from 'react';
 import WorkoutView from'./WorkoutView';
 
 const CreateWorkoutPage = React.createClass({

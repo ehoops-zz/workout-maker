@@ -1,12 +1,9 @@
 // @flow
-const React = require('react');
-const ListGroup = require('react-bootstrap').ListGroup;
-const ListGroupItem = require('react-bootstrap').ListGroupItem;
+import React from 'react';
+import {ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
-const Link = require('react-router-dom').Link;
-
-
-let ChooseWorkout = React.createClass({
+export let ChooseWorkout = React.createClass({
 
   getInitialState: function () {
     return {
@@ -14,13 +11,14 @@ let ChooseWorkout = React.createClass({
     }
   },
 
-  componentDidMount: function() {
-    const params = {method: 'GET',
-                  mode: 'cors',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                }
+  componentDidMount: function(): void {
+    const params = {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }
     fetch('/api/workouts', params)
       .then(
         function(response) {
@@ -56,5 +54,3 @@ let ChooseWorkout = React.createClass({
     );
   },
 })
-
-module.exports = ChooseWorkout;

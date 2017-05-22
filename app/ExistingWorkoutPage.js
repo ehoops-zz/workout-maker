@@ -1,7 +1,7 @@
 // @flow
-const React = require('react');
-const ReactDOM = require('react-dom');
-const WorkoutView = require('./WorkoutView');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import WorkoutView from './WorkoutView';
 
 const ExistingWorkoutPage = React.createClass({
 
@@ -13,12 +13,13 @@ const ExistingWorkoutPage = React.createClass({
 
   componentDidMount: function() {
     const id = this.props.match.params.workoutID;
-    const params = {method: 'GET',
-                  mode: 'cors',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                };
+    const params = {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
     fetch(`/api/workout/${id}`, params)
       .then(
         function(response) {

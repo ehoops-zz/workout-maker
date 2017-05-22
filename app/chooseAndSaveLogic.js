@@ -4,12 +4,10 @@ import {allExercises} from './exercises';
 import type {exerciseObj} from './exercises';
 
 
-export function chooseExercise(currentExercise?: exerciseObj,
-                               category?: string): exerciseObj {
-  if (category === undefined) {
-    let temp = _.sample(allExercises);
-    console.log(temp);
-    return temp;
+export function chooseExercise(currentExercise: ?exerciseObj,
+                               category: ?string): exerciseObj {
+  if (!category) {
+    return _.sample(allExercises);
   }
   const categoryExercises: Array<exerciseObj> =
                             _.filter(allExercises, function (ex) {
@@ -20,13 +18,13 @@ export function chooseExercise(currentExercise?: exerciseObj,
   }));
 }
 
-export type exercisePanelObj = {
+export type ExercisePanelObj = {
   exercise: exerciseObj,
   category: string,
   saved: boolean,
 }
 
-export function addExercise(workout: Array<exercisePanelObj>): Array<exercisePanelObj> {
+export function addExercise(workout: Array<ExercisePanelObj>): Array<ExercisePanelObj> {
   const newExercise = chooseExercise();
   const newExercisePanel = {
     exercise: newExercise,
@@ -37,12 +35,15 @@ export function addExercise(workout: Array<exercisePanelObj>): Array<exercisePan
   return workout;
 }
 
-export function deleteExercise(workout: Array<exercisePanelObj>, index: number) {
+export function deleteExercise(
+  workout: Array<ExercisePanelObj>,
+  index: number
+): Array<ExercisePanelObj> {
   workout.splice(index, 1);
   return workout;
 }
 
-export function rerollWorkout(workout: Array<exercisePanelObj>): Array<exercisePanelObj> {
+export function rerollWorkout(workout: Array<ExercisePanelObj>): Array<ExercisePanelObj> {
   const newWorkout = _.map(workout, (exPanel) => {
     if (exPanel.saved) {
       return exPanel;
@@ -57,19 +58,22 @@ export function rerollWorkout(workout: Array<exercisePanelObj>): Array<exerciseP
   return newWorkout;
 }
 
-export function saveWorkout(exerciseArray: Array<exerciseObj>) {
+export function saveWorkout(
+  exerciseArray: Array<exerciseObj>
+): Promise<void> {
   const workoutName = window.prompt('Enter workout name: ');
   console.log(`Saving workout as ${workoutName}`);
-  const params = {method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  workoutName,
-                  exerciseList: exerciseArray,
-                })
-              }
-  fetch('/api/save_workout', params)
+  const params = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      workoutName,
+      exerciseList: exerciseArray,
+    })
+  }
+  return fetch('/api/save_workout', params)
     .then(
       function(response) {
         console.log('made request');

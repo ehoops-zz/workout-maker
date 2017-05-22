@@ -1,14 +1,7 @@
 // @flow
-const React = require('react');
-const _ = require('underscore');
-
-const DropdownButton = require('react-bootstrap').DropdownButton;
-const MenuItem = require('react-bootstrap').MenuItem;
-const Button = require('react-bootstrap').Button;
-const Glyphicon = require('react-bootstrap').Glyphicon;
-const Grid = require('react-bootstrap').Grid;
-const Row = require('react-bootstrap').Row;
-const Col = require('react-bootstrap').Col;
+import React from 'react';
+import _ from 'underscore';
+import {DropdownButton, MenuItem, Button, Glyphicon, Grid, Row, Col} from 'react-bootstrap';
 
 const Exercise = React.createClass({
 
@@ -66,7 +59,7 @@ const Exercise = React.createClass({
 
           <Col xs={2} md={2}>
             <Button id={"delete-" + index}
-            onClick={this.props.onDeleteExercise}>X</Button>
+            onClick={() => {this.props.onDeleteExercise(index)}}>X</Button>
           </Col>
         </Row>
       </Grid>
