@@ -12,8 +12,6 @@ yarn package manager (https://yarnpkg.com/lang/en/docs/install/)
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
 Fork repository and clone to your local machine
 
 ```
