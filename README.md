@@ -1,4 +1,4 @@
-# workout-maker
+# Basketball Workout Maker
 Generates random basketball workouts for individual players.  The app is Yahtzee-style, you randomly get exercises and can keep the exercises you like by selecting the check icon on the right.  Players can customize their workout by changing the exercise category (i.e. shooting, ball handling, defense), rerolling the workout and by increasing or decreasing the number of exercises.
 
 
