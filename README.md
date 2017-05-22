@@ -1,89 +1,77 @@
 # workout-maker
-Generates basketball workouts
-# Project Title
+Generates random basketball workouts for individual players.  The app is Yahtzee-style, you randomly get exercises and can keep the exercises you like by selecting the check icon on the right.  Players can customize their workout by changing the exercise category (i.e. shooting, ball handling, defense), rerolling the workout and by increasing or decreasing the number of exercises.
 
-One Paragraph of project description goes here
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+yarn package manager (https://yarnpkg.com/lang/en/docs/install/)
 
 ### Installing
 
 A step by step series of examples that tell you have to get a development env running
 
-Say what the step will be
+Fork repository and clone to your local machine
 
 ```
-Give the example
+git clone https://github.com/YOUR-USERNAME/workout-maker
 ```
 
-And repeat
+Navigate to the local repository directory and run the following commands:
+Install dependencies with yarn
 
 ```
-until finished
+yarn install
 ```
+
+Package files with webpack.  For continuous development, use the --watch option.
+
+```
+webpack
+```
+or
+```
+./node_modules/.bin/webpack --watch
+```
+
+Run the node server
+
+```
+yarn run babel-node server.js
+```
+Open your browser to http://localhost:3000
 
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+Workout-maker uses Jest and the test files end with the .test.js extension.  To run the tests, navigate to the main directory and run:
 ```
-Give an example
+yarn test
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [React](https://facebook.github.io/react/) - The JavaScript framework used
+* [Flow](https://flow.org/) - Static type checker
+* [Jest](https://facebook.github.io/jest/) - Tests
+
 
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Erin Hoops** - *Initial work* - [EHoops](https://github.com/ehoops/)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
 ## Acknowledgments
+* Readme and Code of conduct are adapted from [PurpleBooth](https://gist.github.com/PurpleBooth) templates.
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
