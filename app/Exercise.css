@@ -1,0 +1,15 @@
+.pop-up {
+  display:none;
+  position: absolute;
+  top: -170%;
+  right: 20%;
+  height: 200%;
+  width: 30%;
+  border: solid 2px black;
+  background-color: white;
+  z-index: 1;
+}
+
+.show {
+  display:block;
+}
