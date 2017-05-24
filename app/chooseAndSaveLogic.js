@@ -43,7 +43,9 @@ export function deleteExercise(
   return workout;
 }
 
-export function rerollWorkout(workout: Array<ExercisePanelObj>): Array<ExercisePanelObj> {
+export function rerollWorkout(
+  workout: Array<ExercisePanelObj>
+): Array<ExercisePanelObj> {
   const newWorkout = _.map(workout, (exPanel) => {
     if (exPanel.saved) {
       return exPanel;
