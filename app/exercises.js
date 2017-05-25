@@ -50,7 +50,7 @@ export let allExercises: Array<exerciseObj> = [
     id: uuid(),
   },
   {
-    name: 'Shooting off screens (curl around chair and spin ball to yourself)',
+    name: 'Shooting off screens',
     description: 'Set up a chair as an off-ball screen.  Spin the ball to \
                   yourself as you come off the screen.  This simulates an off \
                   ball screen where you curl and receive a pass from a teammate.  \
