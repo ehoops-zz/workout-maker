@@ -31,16 +31,29 @@ const Exercise = React.createClass({
       return exercise.categories})));
     const categoryDropdown = _.map(allCategories, function(category) {
       return <MenuItem
+        className="category-item"
+        style={fullWidth}
         eventKey={category}
         key={category}
         value={category}> {category} </MenuItem>
     });
 
+    const fullWidth = {
+      width: '100%',
+      margin: '0px',
+      fontSize: '1em',
+    };
+
     return (
-      <Grid>
-        <Row className="show-grid">
-          <Col xs={2} md={4}>
+      <Grid
+        style={fullWidth}>
+        <Row
+          className="show-grid"
+          style={fullWidth}>
+          <Col xs={4} md={6}
+            className="category-col">
             <DropdownButton
+              style={fullWidth}
               id={this.props.dropdownKey}
               title={this.props.category}
               onSelect={(evtKey, evt) => this.handleCategoryChange(evtKey, evt)}>
@@ -48,7 +61,7 @@ const Exercise = React.createClass({
             </DropdownButton>
           </Col>
 
-          <Col xs={6} md={4}
+          <Col xs={5} md={3}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             onClick={this.handleMouseLeave}
@@ -60,7 +73,8 @@ const Exercise = React.createClass({
 
           <div id={`description-${exercise.id}`}className="pop-up">{exercise.description}</div>
 
-          <Col xs={2} md={2}>
+          <Col xs={1} md={1}
+            className="category-col">
             <Button
               style={{backgroundColor: background}}
               onClick={this.props.onSaveToggle} >
@@ -68,7 +82,8 @@ const Exercise = React.createClass({
             </Button>
           </Col>
 
-          <Col xs={2} md={2}>
+          <Col xs={2} md={2}
+            className="category-col">
             <Button id={"delete-" + index}
             onClick={() => {this.props.onDeleteExercise(index)}}>X</Button>
           </Col>

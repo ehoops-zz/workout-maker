@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import _ from 'underscore';
 
-import {Jumbotron, Panel, ListGroup, ListGroupItem, Button, Grid} from 'react-bootstrap';
+import {Jumbotron, Panel, ListGroup, ListGroupItem, Button, Grid, Row, Col} from 'react-bootstrap';
 
 import Exercise from './Exercise';
 import {allExercises} from './exercises';
@@ -102,31 +102,47 @@ const WorkoutView = React.createClass({
     );
     return (
       <Panel>
-        <Jumbotron>
+        <Jumbotron
+          style={{textAlign: 'center'}}>
           <h1 id="jumboBanner">{this.state.workoutBanner}</h1>
           <p>{`Workout Time: ${workoutTime}`}</p>
         </Jumbotron>
-          <ListGroup>
-            {workoutList}
-          </ListGroup>
+        <ListGroup>
+          {workoutList}
+        </ListGroup>
 
-        <Button
-          bsStyle="primary" bsSize="large"
-          onClick={this.updateWorkoutOnClick}>
-          Reroll Workout
-        </Button>
+        <Row
+        className="row row-centered">
+          <Col xs={4} md={4}>
+            <Button
+              bsStyle="info"
+              bsSize="large"
+              className="center-block"
+              onClick={this.updateWorkoutOnClick}>
+              Reroll Workout
+            </Button>
+          </Col>
 
-        <Button
-          bsStyle="primary" bsSize="large"
-          onClick={this.saveWorkoutOnClick}>
-          Save Workout
-        </Button>
+          <Col xs={4} md={4}>
+            <Button
+              bsStyle="primary"
+              bsSize="large"
+              className="center-block"
+              onClick={this.saveWorkoutOnClick}>
+              Save Workout
+            </Button>
+          </Col>
 
-        <Button
-          bsStyle="primary" bsSize="large"
-          onClick={this.addExerciseOnClick}>
-          Add Exercise
-        </Button>
+          <Col xs={4} md={4}>
+            <Button
+              bsStyle="info"
+              bsSize="large"
+              className="center-block"
+              onClick={this.addExerciseOnClick}>
+              Add Exercise
+            </Button>
+          </Col>
+        </Row>
 
       </Panel>
     );
