@@ -62,14 +62,14 @@ export let allExercises: Array<exerciseObj> = [
   {
     name: 'Miken',
     description: 'Make 30.  Keep the ball above your shoulders the whole time.',
-    categories: ['shooting'],
+    categories: ['Shooting'],
     time: 2,
     id: uuid(),
   },
   {
     name: 'Reverse Miken',
     description: 'Make 20.  Keep the ball above your shoulders the whole time.',
-    categories: ['shooting'],
+    categories: ['Shooting'],
     time: 3,
     id: uuid(),
   },
@@ -105,7 +105,7 @@ export let allExercises: Array<exerciseObj> = [
                   Imagine your defender: they back off when you jab step, so \
                   the shot is open.  Focus on balance and staying square to the \
                   basket.',
-    categories: ['1 on 1 moves', 'shooting'],
+    categories: ['1 on 1 moves', 'Shooting'],
     time: 5,
     id: uuid(),
   },
